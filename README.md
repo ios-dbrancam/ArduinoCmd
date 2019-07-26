@@ -6,7 +6,7 @@
 ## How it works
 - Download the app from the [App Store](https://apps.apple.com/es/developer/david-brana-campos/id1047286431)
 
-- Download and install the library from [WebServer Library](https://github.com/espressif/arduino-esp32/tree/master/libraries/WebServer)
+- Download and install the [WebServer Library](https://github.com/espressif/arduino-esp32/tree/master/libraries/WebServer)
 
 - Copy the code from this [GitHub](https://github.com/ios-dbrancam/ArduinoCmd/blob/master/Arduino%20Code%20Example) repo to an Arduino Sketch
 
