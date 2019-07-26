@@ -1,4 +1,4 @@
-// Sketch : ESP32 [static IP: 192.168.1.111]
+// Sketch ESP32 [static IP: 192.168.1.111]
 // Read potentiometer value and display it as a Label Node
 // Toggle the state of a LED with a Button Node
 // Connection through WiFi
