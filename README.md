@@ -1,7 +1,7 @@
 # ArduinoCmd
 *ArduinoCmd is an iOS App that allows you to easily control an ESP32 throught WiFi using HTTP Requests*
 
-![Icon _JPG](https://user-images.githubusercontent.com/53085860/61996380-09f1ca00-b094-11e9-99d6-222dbf378c7f.jpg)
+![Schematic-_JPG](https://user-images.githubusercontent.com/53085860/61955957-6bdf0080-afbc-11e9-853c-4724fbf43e44.jpg)
 
 ## How it works
 - Download the app from the [App Store](https://apps.apple.com/es/developer/david-brana-campos/id1047286431)
