@@ -27,3 +27,11 @@
     ![Schematic-_JPG](https://user-images.githubusercontent.com/53085860/61955957-6bdf0080-afbc-11e9-853c-4724fbf43e44.jpg)
 
 - Open **ArduinoCmd**, you will find two *nodes* on the Main Screen. The first one displays the value read from the potentiometer (slide down to update the value). With the second one, you will be able to toggle the status of the LED by pressing the button.
+
+
+## Quick Reference
+
+![Diagram](https://user-images.githubusercontent.com/53085860/62040503-0d9f6100-b1fa-11e9-8252-637cf517f245.jpg)
+
+## Troubleshooting
+
