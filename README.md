@@ -32,6 +32,3 @@
 ## Quick Reference
 
 ![Diagram](https://user-images.githubusercontent.com/53085860/62040503-0d9f6100-b1fa-11e9-8252-637cf517f245.jpg)
-
-## Troubleshooting
-
