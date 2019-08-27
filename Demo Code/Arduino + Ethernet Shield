@@ -1,115 +1,120 @@
-// Sketch : ESP32 [static IP: 192.168.1.111]
-// Connection through WiFi
+// Sketch : Arduino [static IP: 192.168.1.111]
+// Connection through Ethernet (ENET)
 // Label Node > Displays the value readed from a potentiometer
 // Button Node > Blinks a LED
 // Switch Node > Toggles the state of a LED
-// TextField Node > Set a PWM value to the LED*
+// TextField Node > Set a PWM value to the LED
 
 // Libraries
-// To download WebServer.h >> github.com/espressif/arduino-esp32/tree/master/libraries/WebServer
-#include <WiFi.h>
-#include <WebServer.h>
-
-// Your Network Name (SSID) & Password
-// Change them to your network name and password
-const char* ssid = "YOUR_NETWORK_NAME";
-const char* password = "YOUR_NETWORK_PASSWORD";
+#include <SPI.h>
+#include <Ethernet.h>
 
 // STATIC IP DETAILS
-// local must be a unique IP on the local network
-IPAddress local(192, 168, 1, 111);
-// to know how to configure the rest of the IPAddresses go in your iPhone to:
-// (the iPhone must be connected to the same networks as the ESP32)
+// mac : unique MAC address
+byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
+// local : unique IP on the local network
+byte local[] = {192, 168, 1, 111};
+// to know how to configure the rest, in your iPhone go to:
+// (the iPhone must be connected to the same network)
 // Preferences > Wi-Fi > (i) on the WiFi network
 // Router -> gateway
 // Subnet Mask -> subnet
-// DNS -> primaryDNS & secondaryDNS
-IPAddress gateway(192, 168, 1, 1);
-IPAddress subnet(255, 255, 255, 0);
-IPAddress primaryDNS(80, 58, 62, 250);
-IPAddress secondaryDNS(80, 58, 62, 254);
+byte gateway[] = {192, 168, 1, 1};
+byte subnet[] = {255, 255, 255, 0};
 
-// WebServer instance
-WebServer server(80);
+// Server instance
+EthernetServer server(80);
 
-// ESP32 Pins
-const int ledPin = 15;
-// const int ledChannel = 0;
-const int potPin = 34;
+// Server variables
+String readString;
+
+// Arduino pins
+const int ledPin = 5;
+const int potPin = 2;
 
 // Sketch variables
 bool isLedOn = false;
 
 void setup() {
   // Serial initialization
-  Serial.begin(115200);
+  Serial.begin(9600);
   delay(2000);
 
-  // Configures WiFi connection
-  if (!WiFi.config(local, gateway, subnet, primaryDNS, secondaryDNS)) {
-    Serial.println("Failed to config");
-  }
-  WiFi.begin(ssid, password);
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(1000);
-    Serial.println("Connecting to WiFi...");
-  }
-  Serial.print("Connected to the WiFi network // IP: ");
-  Serial.println(WiFi.localIP());
-
-  // Initialize server
+  // Configures Ethernet connection
+  Ethernet.begin(mac, local, gateway, subnet);
   server.begin();
-
-  // Add here the 'code' of the nodes
-  // .on(nodeCode, arduinoFunction)
-  server.on("/potValue", handlePotValue);
-  server.on("/toggleLed", handleToggle);
-  server.on("/blinkLed", handleBlink);
-  server.on("/pwmValue", handlePWM);
+  Serial.print("Server connected at: ");
+  Serial.println(Ethernet.localIP());
 
   // LED & Pot pinModes
   pinMode(ledPin, OUTPUT);
-  // ledcSetup(ledChannel, 5000, 8);
-  // ledcAttachPin(ledPin, ledChannel);
   pinMode(potPin, INPUT);
 }
 
 void loop() {
-  server.handleClient();
-}
+  // Looks for client requests
+  EthernetClient client = server.available();
+  if (client) {
+    while (client.connected()) {
+      if (client.available()) {
+        char c = client.read();
+        readString += c;
 
-// Reads the value of the potentiometer and sends it
-void handlePotValue() {
-  int potValue = analogRead(potPin);
-  server.send(200, "text/html", String(potValue));
-  Serial.println(potValue);
-}
+        if (c == '\\n') {
+          // Request ended
+          Serial.println(readString);
 
-// Toggles the state of a LED
-void handleToggle() {
-  if (server.args()) {
-    isLedOn = server.arg("value") == "1" ? true : false;
-    digitalWrite(ledPin, isLedOn);
+          // Server respond header
+          client.println("HTTP/1.1 200 OK");
+          client.println("Content-Type: text/html");
+          client.println("Connection: close");
+          client.println("");
+
+          // Create a IF statement for each node
+          // Check Label Node Request
+          if (readString.indexOf("/potValue") > 0) {
+            int potValue = analogRead(potPin);
+            client.println(potValue);
+            Serial.println(potValue);
+
+            // Check Switch Node Request
+          } else if (readString.indexOf("/toggleLed") > 0) {
+            if (readString.indexOf("?value") > 0) {
+              isLedOn = (getValue(readString) == "1") ? true : false;
+              digitalWrite(ledPin, isLedOn);
+            }
+            client.println(isLedOn ? "1" : "0");
+            Serial.println(isLedOn);
+
+            // Check Button Node Request
+          } else if (readString.indexOf("/blinkLed") > 0) {
+            digitalWrite(ledPin, !isLedOn);
+            delay(200);
+            digitalWrite(ledPin, isLedOn);
+            Serial.println("Blink!");
+
+            // Check Text Field Node Request
+          } else if (readString.indexOf("/pwmValue") > 0) {
+            analogWrite(ledPin, getValue(readString).toInt());
+            Serial.print("PWM: ");
+            Serial.println(getValue(readString));
+          }
+
+          delay(5);
+          client.stop();
+
+          readString = "";
+        }
+      }
+    }
   }
-  server.send(200, "text/html", isLedOn ? "1" : "0");
-  Serial.println(isLedOn);
 }
 
-// Blinks the LED
-void handleBlink() {
-  digitalWrite(ledPin, !isLedOn);
-  delay(200);
-  digitalWrite(ledPin, isLedOn);
-  server.send(200, "text/html", "OK");
-  Serial.println("Blink!");
-}
-
-// Sets a PWM value on the LED
-// digitalWrite & ledcWrite can't be
-// used simultaneously, so it only prints it
-void handlePWM() {
-  int pwmValue = server.arg("value").toInt();
-  // ledcWrite(ledChannel, pwmValue);
-  server.send(200, "text/html", "OK");
-  Serial.println(pwmValue);
+// Process input data from HTTP Request
+// input "GET http://192.168.1.111/toggleLed?value=1 HTTP/1.1"
+// return "1"
+String getValue(String input) {
+  int startIndex = (input.indexOf("=") + 1);
+  int endIndex = input.indexOf(" ", startIndex);
+  return input.substring(startIndex, endIndex);
 }
