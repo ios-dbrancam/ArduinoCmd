@@ -21,7 +21,7 @@
 
 ![Sch_ESP32](https://user-images.githubusercontent.com/53085860/63844898-4f523180-c989-11e9-8ca7-e453b8fd9486.png)
 
-- Open **ArduinoCmd**, you will find four *nodes* on the Main Screen. The first one displays the value read from the potentiometer (slide down to update the value). The second and third ones control the LED, you will be able to blink the LED by pressing the button or toggling the state with the switch. *It's not possible to use PWM and digitalWrite on the ESP32 at the same time so the fourth node is disabled on the Sketch. If the Main Screen is empty it's possible to restart the tutorial from the Preferences View.*
+- Open **ArduinoCmd**, you will find four *nodes* on the Main Screen. The first one displays the value read from the potentiometer (slide down to update the value). The second and third one control the LED, you will be able to blink the LED by pressing the button or toggling the state with the switch. *It's not possible to use PWM and digitalWrite on the ESP32 at the same time so the fourth node is disabled on the Sketch. If the Main Screen is empty it's possible to restart the tutorial from the Preferences View.*
 
 ![MainView](https://user-images.githubusercontent.com/53085860/63841557-4f4f3300-c983-11e9-9d08-94ab39a06335.png)
 
