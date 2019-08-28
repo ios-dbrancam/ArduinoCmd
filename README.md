@@ -9,4 +9,4 @@ You'll start with an empty canvas that you can fill with different kind of **Nod
 - **Switch**: to toggle between two states
 - **TextField**: to send data as a String to the Arduino
 
-![MainView](https://user-images.githubusercontent.com/53085860/63841209-adc7e180-c982-11e9-8997-9e079edc48fc.png)
+![MainView](https://user-images.githubusercontent.com/53085860/63841557-4f4f3300-c983-11e9-9d08-94ab39a06335.png)
