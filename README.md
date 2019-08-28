@@ -4,8 +4,8 @@
 [![Schematic-_JPG](https://user-images.githubusercontent.com/53085860/61950423-0f74e480-afae-11e9-9aba-a4c44ea940bc.jpg)](https://apps.apple.com/us/app/arduino-commands/id1474614825)
 
 You'll start with an empty canvas that you can fill with different kind of **Nodes** to interact with the Arduino:
-- **Labels**: to display data from the Arduino
-- **Buttons**: to do some action on the Arduino
+- **Label**: to display data from the Arduino
+- **Button**: to do some action on the Arduino
 - **Switch**: to toggle between two states
 - **TextField**: to send data as a String to the Arduino
 
