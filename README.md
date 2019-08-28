@@ -1,5 +1,5 @@
 # Arduino Commands
-*Arduino Commands is an iOS App that allows you to easily control all your Arduino based projects throught WiFi/Ethernet using HTTP Requests.* [App Store](https://apps.apple.com/us/app/arduino-commands/id1474614825)
+*Arduino Commands is a free iOS App that allows you to easily control all your Arduino based projects throught WiFi/Ethernet using HTTP Requests.* [App Store](https://apps.apple.com/us/app/arduino-commands/id1474614825)
 
 [![Schematic-_JPG](https://user-images.githubusercontent.com/53085860/61950423-0f74e480-afae-11e9-9aba-a4c44ea940bc.jpg)](https://apps.apple.com/us/app/arduino-commands/id1474614825)
 
