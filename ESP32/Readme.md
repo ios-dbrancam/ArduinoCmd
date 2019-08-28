@@ -19,7 +19,7 @@
 
 - Follow the schematic to connect a LED and a Potentiometer to the ESP32
 
-![Sch_ESP32](https://user-images.githubusercontent.com/53085860/63844815-27fb6480-c989-11e9-95cd-312a2f537f6f.png)
+![Sch_ESP32](https://user-images.githubusercontent.com/53085860/63844898-4f523180-c989-11e9-8ca7-e453b8fd9486.png)
 
 - Open **ArduinoCmd**, you will find four *nodes* on the Main Screen. The first one displays the value read from the potentiometer (slide down to update the value). The second and third ones control the LED, you will be able to blink the LED by pressing the button or toggling the state with the switch. It's not possible to use PWM and digitalWrite on the ESP32 at the same time so the fourth node is disabled on the Sketch.
 
