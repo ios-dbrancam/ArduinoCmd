@@ -19,7 +19,7 @@
 
 - Follow the schematic to connect a LED and a Potentiometer to the ESP32
 
-    ![Schematic-_JPG](https://user-images.githubusercontent.com/53085860/61955957-6bdf0080-afbc-11e9-853c-4724fbf43e44.jpg)
+![Sch_ESP32](https://user-images.githubusercontent.com/53085860/63838104-0300f480-c97d-11e9-9689-151bde8b2621.png)
 
 - Open **ArduinoCmd**, you will find two *nodes* on the Main Screen. The first one displays the value read from the potentiometer (slide down to update the value). With the second one, you will be able to toggle the status of the LED by pressing the button.
 
