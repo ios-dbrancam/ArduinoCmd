@@ -3,7 +3,7 @@
 
 ![Schematic-_JPG](https://user-images.githubusercontent.com/53085860/61950423-0f74e480-afae-11e9-9aba-a4c44ea940bc.jpg)
 
-## How it works
+## How it works [ESP32]
 - Download the app from the [App Store](https://apps.apple.com/es/developer/david-brana-campos/id1047286431)
 
 - Download and install the [WebServer Library](https://github.com/espressif/arduino-esp32/tree/master/libraries/WebServer)
