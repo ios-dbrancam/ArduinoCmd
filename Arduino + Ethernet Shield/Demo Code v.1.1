@@ -60,7 +60,7 @@ void loop() {
         char c = client.read();
         readString += c;
 
-        if (c == '\\n') {
+        if (c == '\n') {
           // Request ended
           Serial.println(readString);
 
