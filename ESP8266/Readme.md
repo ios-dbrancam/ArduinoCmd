@@ -1,4 +1,5 @@
-## How it works
+# How it works
+
 - Download the app from the [App Store](https://apps.apple.com/es/developer/david-brana-campos/id1047286431)
 
 - Copy the code from this [GitHub page](https://github.com/ios-dbrancam/ArduinoCmd/blob/master/ESP8266/Demo%20Code%20v.1) to a new Arduino Sketch
@@ -12,7 +13,7 @@
     - `IPAddress subnet(255, 255, 255, 0);`
     - `IPAddress primaryDNS(80, 58, 62, 250);`
     - `IPAddress secondaryDNS(80, 58, 62, 254);`
-    
+
 - Upload the sketch
 
 - Follow the schematic to connect a LED and a Potentiometer to the ESP8266
@@ -23,8 +24,6 @@
 
 ![MainView](https://user-images.githubusercontent.com/53085860/63841557-4f4f3300-c983-11e9-9d08-94ab39a06335.png)
 
-
-
-### Quick Reference
+## Quick Reference
 
 ![Diagram](https://user-images.githubusercontent.com/53085860/62040503-0d9f6100-b1fa-11e9-8252-637cf517f245.jpg)
